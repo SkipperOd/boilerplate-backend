@@ -1,4 +1,4 @@
-let responseCodes:{[index:string]:string}= {
+let responseCodes: { [index: string]: string } = {
 
     // Generic - Series 1XX
     101: 'Insufficient rights',
@@ -26,7 +26,7 @@ let responseCodes:{[index:string]:string}= {
     301: 'Validation failed',
     302: 'Sign Up successful',
     303: 'Sign Up failed',
-    304: 'Resource exists already',
+    304: 'Email exists already',
 
     // Network - Series 2XXX
     2000: 'This user is blocked by you.',
@@ -36,7 +36,7 @@ let responseCodes:{[index:string]:string}= {
 
 
 
-exports.getStatusText = (code:string) => {
+export function GetStatusText(code: string) {
     if (responseCodes.hasOwnProperty(code)) {
         return responseCodes[code];
     } else {

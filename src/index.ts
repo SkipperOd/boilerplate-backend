@@ -3,11 +3,13 @@ import { ApolloServer } from "apollo-server-express";
 import Express from "express";
 import { buildSchema, Resolver, Query } from "type-graphql";
 import { createConnection } from "typeorm";
+import { RegisterResolver } from "./mutations/users/register";
+
 
 @Resolver()
-class HelloResolver{
-  @Query(()=>String)
-  async helloWorld(){
+class HelloResolver {
+  @Query(() => String)
+  async helloWorld() {
     return "Hello World"
   }
 }
@@ -17,23 +19,23 @@ class HelloResolver{
 
 
 const main = async () => {
-    await createConnection();
+  await createConnection();
 
 
-    const schema = await buildSchema({
-      resolvers: [HelloResolver]
-    });
+  const schema = await buildSchema({
+    resolvers: [HelloResolver, RegisterResolver]
+  });
 
-    const apolloServer = new ApolloServer({schema})
+  const apolloServer = new ApolloServer({ schema })
 
-    const app = Express();
+  const app = Express();
 
-    apolloServer.applyMiddleware({app})
+  apolloServer.applyMiddleware({ app })
 
-    app.listen(4000,()=>{
-      console.log("Server started on http://localhost:4000/graphql")
-    })
-  };
+  app.listen(4000, () => {
+    console.log("Server started on http://localhost:4000/graphql")
+  })
+};
 
 
-  main()
+main()

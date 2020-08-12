@@ -1,9 +1,8 @@
-import { Entity, Column, BaseEntity, DeleteDateColumn,UpdateDateColumn, CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
-import { ObjectType, Field, ID } from "type-graphql";
+import { Entity, Column, BaseEntity, DeleteDateColumn, UpdateDateColumn, CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
+import { ObjectType } from "type-graphql";
 @ObjectType()
 @Entity()
 export class Base extends BaseEntity {
-    @Field(() => ID)
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -17,18 +16,18 @@ export class Base extends BaseEntity {
     @CreateDateColumn()
     createdAt: Date;
 
-    @Column()
-    createdBy:string    
+    @Column({ nullable: true })
+    createdBy: string
 
     @Column()
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @Column()
-    updatedBy:string  
-    
+    @Column({ nullable: true })
+    updatedBy: string
+
     @DeleteDateColumn()
-    deletedAt:Date
+    deletedAt: Date
 
 
 }

@@ -4,7 +4,6 @@ import { _Countires } from "./_countries";
 @Entity()
 export class _States extends BaseEntity {
 
-
     @PrimaryGeneratedColumn()
     id: number;
 

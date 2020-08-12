@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import bcript from "bcryptjs";
-import { _User } from "../../entity/tables/_users";
-import { RegistrationInput } from "../../models/users/registration";
+import { _User } from "../../../entities/tables/_users";
+import { RegistrationInput } from "../models/registration";
 // import { IsAuthenticated } from "../middleware/isAuth";
 
 // import { emailSender } from "../../utility/EmailSender";

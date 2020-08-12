@@ -1,7 +1,7 @@
 import { InputType, Field } from "type-graphql";
 import { Length, IsEmail } from "class-validator";
-import { IsEmailAlreadyExist } from "../../utilities/validations/emailExists";
-import { GetStatusText } from "../../constants/respons_code"
+import { IsEmailAlreadyExist } from "../../../utilities/validations/emailExists";
+import { GetStatusText } from "../../../constants/respons_code"
 
 @InputType({ description: "Register new user" })
 export class RegistrationInput {

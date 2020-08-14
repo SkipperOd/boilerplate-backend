@@ -6,18 +6,20 @@ import { Field, ObjectType } from "type-graphql";
 @ObjectType()
 @Entity()
 export class _User_Roles_Permissions extends Base {
-
   @Column()
-  @Field() 
+  @Field()
   name: string;
 
-  @ManyToOne(() => _User_Roles, userRoles => userRoles.userRolesPermissions)
+  @ManyToOne(
+    () => _User_Roles, 
+    (userRoles) => userRoles.userRolesPermissions)
   @Field(() => _User_Roles)
   userRoles: _User_Roles;
 
-  @ManyToOne(() => _Permissions, permissions => permissions.userRolesPermissions)
+  @ManyToOne(
+    () => _Permissions,
+    (permissions) => permissions.userRolesPermissions
+  )
   @Field(() => _Permissions)
   permissions: _Permissions;
-
-
 }

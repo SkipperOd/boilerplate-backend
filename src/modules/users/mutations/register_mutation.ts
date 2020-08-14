@@ -11,31 +11,27 @@ import { getManager } from "typeorm";
 
 @Resolver()
 export class RegisterMutationResolver {
-  //   @UseMiddleware(IsAuthenticated)
-  //   @Query(() => [User])
-  //   async User() {
-  //     return await User.find();
-  //   }
-
   @Mutation(() => _User)
   async register(@Arg("data") person: RegistrationInput) {
     const hashedpassword = await bcript.hash(person.password, 12);
-    const profile = new _Profile()
-    const user = new _User()
+    const profile = new _Profile();
+    const user = new _User();
     profile.imageUrl = person.profile.imageUrl;
-    const netprofile = await getManager().connection.createEntityManager().save(profile)
-    
-    user.email = person.email
-    user.firstName = person.firstName
-    user.gender = person.gender
-    user.lastName = person.lastName
-    user.userName = person.userName
-    user.password = hashedpassword
-    user.profile = netprofile
-    const User =  await getManager().connection.createEntityManager().save(user)
+    const netprofile = await getManager()
+      .connection.createEntityManager()
+      .save(profile);
 
-    console.log(User)
+    user.email = person.email;
+    user.firstName = person.firstName;
+    user.gender = person.gender;
+    user.lastName = person.lastName;
+    user.userName = person.userName;
+    user.password = hashedpassword;
+    user.profile = netprofile;
+    const User = await getManager().connection.createEntityManager().save(user);
 
-    return User
+    console.log(User);
+
+    return User;
   }
 }

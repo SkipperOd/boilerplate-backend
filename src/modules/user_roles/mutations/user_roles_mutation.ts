@@ -3,47 +3,29 @@ import { _User } from "../../../database/entities/_users";
 import { _User_Roles } from "../../../database/entities/_users_roles";
 import { UserRolesInput } from "../inputs/user_roles";
 import { _Roles } from "../../../database/entities/_roles";
-import {  getManager } from "typeorm";
-// import { IsAuthenticated } from "../middleware/isAuth";
-
-// import { emailSender } from "../../utility/EmailSender";
-// import { creatConfirmationalUrl } from "../../utility/creatConfirmationalUrl";
+import { getManager } from "typeorm";
 
 @Resolver()
 export class UserRolesMutationResolver {
+  @Mutation(() => _User_Roles)
+  async createUserRoles(@Arg("data") userRoles: UserRolesInput) {
+    const userRole = new _User_Roles();
+    userRole.name = userRoles.name;
 
+    const users = (await _User.findOne(userRoles.userId)) as _User;
+    const roles = (await _Roles.findOne(userRoles.roleId)) as _Roles;
 
-    @Mutation(() => _User_Roles)
-    async createUserRoles(@Arg("data") userRoles: UserRolesInput) {
-        const userRole = new _User_Roles();
-        userRole.name = userRoles.name;
+    userRole.users = users;
+    userRole.roles = roles;
 
-        const users = await _User.findOne(userRoles.userId) as _User
-        const roles = await _Roles.findOne(userRoles.roleId) as _Roles
+    console.log(userRole);
 
-        userRole.users = users
-        userRole.roles = roles
-        
-        console.log(userRole)
+    await getManager().connection.createEntityManager().save(userRole);
+    console.log(userRole);
+    users.userRoles = [userRole];
+    await getManager().connection.createEntityManager().save(users);
+    console.log(userRole);
 
-        
-        await getManager().connection.createEntityManager().save(userRole)
-        console.log(userRole)
-        users.userRoles = [userRole]
-        await getManager().connection.createEntityManager().save(users)
-        console.log(userRole)
-
-
-
-
-
-
-
-
-        
-        return userRole
-
-
-
-    }
+    return userRole;
+  }
 }

@@ -6,7 +6,6 @@ import { ObjectType, Field } from "type-graphql";
 @ObjectType()
 @Entity()
 export class _User extends Base {
-
   @Column({ nullable: true })
   authToken: string;
 
@@ -37,13 +36,12 @@ export class _User extends Base {
   @Column("bool", { default: false })
   confirmed: boolean;
 
-
-  @OneToOne(() => _Profile, profile => profile.user)
+  @OneToOne(() => _Profile, (profile) => profile.user)
   @Field(() => _Profile)
   @JoinColumn()
   profile: _Profile;
 
-  @OneToMany(() => _User_Roles, ur => ur.users)
+  @OneToMany(() => _User_Roles, (ur) => ur.users)
   @Field(() => [_User_Roles])
   userRoles: _User_Roles[];
 }

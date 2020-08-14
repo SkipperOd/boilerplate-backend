@@ -11,16 +11,15 @@ export class _User_Roles extends Base {
   @Column()
   name: string;
 
-  @ManyToOne(() => _User, users => users.userRoles)
+  @ManyToOne(() => _User, (users) => users.userRoles)
   @Field(() => _User)
   users: _User;
 
-  @OneToMany(() => _User_Roles_Permissions, urp => urp.userRoles)
+  @OneToMany(() => _User_Roles_Permissions, (urp) => urp.userRoles)
   @Field(() => [_User_Roles_Permissions])
   userRolesPermissions: _User_Roles_Permissions[];
 
-  @ManyToOne(() => _Roles, role => role.userRoles)
+  @ManyToOne(() => _Roles, (role) => role.userRoles)
   @Field(() => _Roles)
   roles: _Roles;
-
 }

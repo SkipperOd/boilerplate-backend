@@ -1,9 +1,12 @@
 import { Entity, Column, BaseEntity, DeleteDateColumn, UpdateDateColumn, CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
-import { ObjectType } from "type-graphql";
+import { ObjectType, Field, ID } from "type-graphql";
 @ObjectType()
 @Entity()
 export class Base extends BaseEntity {
-    @PrimaryGeneratedColumn("uuid")
+    @Field(() => ID)
+    @PrimaryGeneratedColumn('uuid',{
+        name:"id"
+    })
     id: string;
 
     @Column("bool", { default: false })

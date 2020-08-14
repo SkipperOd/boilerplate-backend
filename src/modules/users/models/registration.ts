@@ -2,6 +2,7 @@ import { InputType, Field } from "type-graphql";
 import { Length, IsEmail } from "class-validator";
 import { IsEmailAlreadyExist } from "../../../utilities/validations/emailExists";
 import { GetStatusText } from "../../../constants/respons_code"
+import { ProfileInput } from "./profile";
 
 @InputType({ description: "Register new user" })
 export class RegistrationInput {
@@ -26,4 +27,9 @@ export class RegistrationInput {
 
   @Field()
   gender: string;
+
+  @Field()
+  profile:ProfileInput;
+ 
+
 }

@@ -2,7 +2,7 @@ import { Entity, Column, OneToMany, JoinColumn, OneToOne } from "typeorm";
 import { Base } from "../base";
 import { _User_Roles } from "./_users_roles";
 import { _Profile } from "./_profiles";
-import { ObjectType, Field } from "type-graphql";
+import { ObjectType, Field, Root } from "type-graphql";
 @ObjectType()
 @Entity()
 export class _User extends Base {
@@ -32,6 +32,11 @@ export class _User extends Base {
   @Field()
   @Column()
   gender: string;
+
+  @Field()
+  name(@Root() parent: _User): string {
+    return `${parent.firstName} ${parent.lastName}`;
+  }
 
   @Column("bool", { default: false })
   confirmed: boolean;

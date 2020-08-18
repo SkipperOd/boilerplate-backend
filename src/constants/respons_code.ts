@@ -27,6 +27,7 @@ let responseCodes: { [index: string]: string } = {
     302: 'Sign Up successful',
     303: 'Sign Up failed',
     304: 'Email exists already',
+    305: 'Username exists already',
 
     // Network - Series 2XXX
     2000: 'This user is blocked by you.',

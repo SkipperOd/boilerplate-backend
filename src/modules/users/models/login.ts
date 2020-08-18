@@ -1,9 +1,10 @@
 import { InputType, Field } from "type-graphql";
-import {IsEmail } from "class-validator";
+import {IsEmail, Length } from "class-validator";
 
 @InputType({ description: "Login user" })
 export class LoginInput {
   @Field()
+  @Length(6,20)
   password: string;
 
   @Field()

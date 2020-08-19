@@ -11,6 +11,7 @@ import {
   export class userNameConstraint
     implements ValidatorConstraintInterface {
     validate(userName: string) {
+      console.log("Username : ",userName)
       return _User.findOne({ where: { userName } }).then((user) => {
         if (user) return false;
         return true;

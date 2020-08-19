@@ -18,6 +18,7 @@ let responseCodes: { [index: string]: string } = {
     205: 'Requested resource does not exists',
     206: 'Invalid password',
     207: 'No login found',
+    208: 'Not authenticated',
 
 
 

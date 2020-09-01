@@ -4,6 +4,10 @@ import { _User } from "../../../database/entities/_users";
 import { RegistrationInput } from "../models/registration";
 import { _Profile } from "../../../../src/database/entities/_profiles";
 import { getManager } from "typeorm";
+import { creatConfirmationalUrl } from "../../../utilities/email/create_confirmation_url";
+import { emailSender } from "../../../../src/utilities/email/sender";
+import { template } from "../../../constants/email/userVerificationTemplate";
+import { subjects } from "../../../../src/constants/email/subject";
 // import { IsAuthenticated } from "../middleware/isAuth";
 
 // import { emailSender } from "../../utility/EmailSender";
@@ -29,8 +33,11 @@ export class RegisterMutationResolver {
     user.password = hashedpassword;
     user.profile = netprofile;
     const User = await getManager().connection.createEntityManager().save(user);
-
-    console.log(User);
+    await emailSender(
+      User.email,
+      template(creatConfirmationalUrl(User.id)),
+      subjects.emailVerification
+    );
 
     return User;
   }

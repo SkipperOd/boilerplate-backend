@@ -4,6 +4,7 @@ import { _User } from "../../../database/entities/_users";
 import { LoginInput } from "../models/login";
 import { _Profile } from "../../../database/entities/_profiles";
 import { ApplicationContext } from "../../../utilities/types/application_context";
+import { GetStatusText } from "../../../constants/responses/responsCode";
 // import { IsAuthenticated } from "../middleware/isAuth";
 
 // import { emailSender } from "../../utility/EmailSender";
@@ -26,22 +27,26 @@ export class LoginMutationResolver {
     });
 
     if (!user) {
-      return null;
+      throw new Error(GetStatusText("201"));
     }
 
-    const valid = await bcript.compare(person.password, user.password);
+    const password = await bcript.compare(person.password, user.password);
 
-    if (!valid) {
-      return null;
+    if (!password) {
+      throw new Error(GetStatusText("201"));
     }
 
+    if(!user.confirmed){
+      throw new Error(GetStatusText("203"));
+    }
+    
     // the exclaimation mark tells that the property is defind
 
     // Note: if this dosnt work that is it dosnt show in the application
     //tab of inspect element reason is in settings cog request.credentails isnt set to "include"
 
     ctx.req.session!.userId = user.id;
-
+ 
     return user;
   }
 }

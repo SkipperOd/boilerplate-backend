@@ -10,13 +10,12 @@ import session from "express-session";
 import { redis } from "./redis";
 import cors from "cors";
 
-import { Config } from "./constants/config";
+import { Config } from "./constants/config/config";
 
 const main = async () => {
   await createConnection();
-  const config = new Config();
 
-  console.log(config);
+  console.log(Config);
   const schema = await MetaData;
 
   //to access request object in our resolver to access session data
@@ -49,12 +48,12 @@ const main = async () => {
         client: redis,
       }),
       name: "qid",
-      secret: config.sessionSecret,
+      secret: Config.sessionSecret,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: config.envrionment === "Production",
+        secure: Config.envrionment === "Production",
         maxAge: 1000 * 60 * 60 * 24 * 7 * 365,
       },
     })
@@ -64,6 +63,7 @@ const main = async () => {
 
   app.listen(4000, () => {
     console.log("Server started on http://localhost:4000/graphql");
+
   });
 };
 

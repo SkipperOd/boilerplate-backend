@@ -7,6 +7,6 @@
     "password": "securedb!",
     "database": "postgres",
     "synchronize": true,
-    "logging": true,
+    "logging": false,
     "entities": ["src/database/entities/*.*"]
   }

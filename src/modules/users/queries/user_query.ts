@@ -18,10 +18,10 @@ export class UserQueryResolver {
         "profile",
         "userRoles",
         "userRoles.userRolesPermissions",
+        "userRoles.roles",
         "userRoles.userRolesPermissions.permissions",
       ],
     });
-    console.log(user);
     return user;
   }
   
@@ -32,7 +32,6 @@ export class UserQueryResolver {
     const user = await userRepository.findOne(userId, {
       relations: ["profile", "userRoles"],
     });
-    console.log(user);
     return user;
   }
 

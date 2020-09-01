@@ -41,6 +41,11 @@ export class _User extends Base {
   @Column("bool", { default: false })
   confirmed: boolean;
 
+  @Field()
+  emailVerified(@Root() parent: _User): string {
+    return `${parent.confirmed}`;
+  }
+
   @OneToOne(() => _Profile, (profile) => profile.user)
   @Field(() => _Profile)
   @JoinColumn()

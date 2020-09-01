@@ -1,4 +1,4 @@
-let responseCodes: { [index: string]: string } = {
+const responseCodes: { [index: string]: string } = {
 
     // Generic - Series 1XX
     101: 'Insufficient rights',
@@ -19,6 +19,7 @@ let responseCodes: { [index: string]: string } = {
     206: 'Invalid password',
     207: 'No login found',
     208: 'Not authenticated',
+    209: 'Not authorized',
 
 
 

@@ -2,7 +2,7 @@ import { InputType, Field } from "type-graphql";
 import { Length, IsEmail } from "class-validator";
 import { IsEmailAlreadyExist } from "../../../utilities/validations/email_Exists";
 import { IsUserNameAlreadyExist } from "../../../utilities/validations/userName_Exists";
-import { GetStatusText } from "../../../constants/respons_code"
+import { GetStatusText } from "../../../constants/responses/responsCode"
 import { ProfileInput } from "./profile";
 
 @InputType({ description: "Register new user" })

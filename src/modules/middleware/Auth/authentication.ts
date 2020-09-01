@@ -1,12 +1,12 @@
 import { ApplicationContext } from "../../../utilities/types/application_context";
 import { MiddlewareFn } from "type-graphql";
-import { GetStatusText } from "../../../constants/respons_code";
+import { GetStatusText } from "../../../constants/responses/responsCode";
 export const IsAuthenticated: MiddlewareFn<ApplicationContext> = async (
-  { context, info },
+  { context, info},
   next
 ) => {
   const anonymityList = ["register", "login"]
-
+  // console.log(anonymityList.includes(info.fieldName),info.fieldName)
   if (anonymityList.includes(info.fieldName)) {
     return next();
   }

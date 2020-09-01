@@ -9,6 +9,7 @@ export class _Profile extends Base {
   @Field()
   @Column()
   imageUrl: string;
+  
 
   @OneToOne(() => _User, (user) => user.profile)
   user: _User;

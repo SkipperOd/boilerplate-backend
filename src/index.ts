@@ -28,7 +28,6 @@ const main = async () => {
     context: ({ req }: any) => ({
       req,
     }),
-    
   });
 
   const app = Express();
@@ -36,7 +35,7 @@ const main = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: "http://localhost:3000",
+      origin: `http://localhost:${Config.frontendPort}`,
     })
   );
 
@@ -61,9 +60,8 @@ const main = async () => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(4000, () => {
-    console.log("Server started on http://localhost:4000/graphql");
-
+  app.listen(Config.backendPort, () => {
+    console.log(`Server started on http://localhost:${Config.backendPort}/graphql`);
   });
 };
 

@@ -4,7 +4,7 @@ import { _User } from "../../../database/entities/_users";
 import { registerConfirmation } from "../../../constants/prefixes";
 
 @Resolver()
-export class ConfirmUserResolver {
+export class ConfirmUserMutationResolver {
   @Mutation(() => Boolean, { nullable: true })
   async confirmUser(@Arg("token") token: string): Promise<Boolean> {
     const user = await redis.get(registerConfirmation + token);

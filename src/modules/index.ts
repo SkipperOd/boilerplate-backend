@@ -12,7 +12,9 @@ import { RoleMutationResolver } from "./roles/mutations/roles_mutation";
 import { UserRolesMutationResolver } from "./user_roles/mutations/user_roles_mutation";
 import { UserRolesPermissionsInputMutationResolver } from "./user_roles_permissions/mutations/User_Roles_Permissions_mutation";
 import { IsAuthenticated } from "./middleware/Auth/authentication";
-import { ConfirmUserResolver } from "./users/mutations/confirmUser";
+import { ConfirmUserMutationResolver } from "./users/mutations/confirmUser";
+import { ForgotPasswordMutationResolver } from "./users/mutations/forgotPassword";
+import { ChangePasswordMutationResolver } from "./users/mutations/changePassword";
 
 export const MetaData = buildSchema({
          resolvers: [
@@ -23,12 +25,15 @@ export const MetaData = buildSchema({
            RoleMutationResolver,
            LoginMutationResolver,
            UserRolesMutationResolver,
+           ConfirmUserMutationResolver,
+           ForgotPasswordMutationResolver,
+           ChangePasswordMutationResolver,
 
            // Query resolvers
            UserQueryResolver,
            PermissionQueryResolver,
            RoleQueryResolver,
-           ConfirmUserResolver
+
          ],
          globalMiddlewares: [IsAuthenticated],
        });

@@ -1,18 +1,27 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
-import { redis } from "../../../redis";
 import { _User } from "../../../database/entities/_users";
-import { registerConfirmation } from "../../../constants/prefixes";
+
+import { GetStatusText } from "../../../../src/constants/responses/responsCode";
+import { emailSender } from "../../../../src/utilities/email/sender";
+import { template } from "../../../../src/constants/email/forgotPasswordTemplate";
+import { creatForgotPasswordUrl } from "../../../../src/utilities/email/create_confirmation_url";
+import { subjects } from "../../../../src/constants/email/subject";
 
 @Resolver()
-export class ForgotPasswordResolver {
+export class ForgotPasswordMutationResolver {
   @Mutation(() => Boolean, { nullable: true })
-  async confirmUser(@Arg("token") token: string): Promise<Boolean> {
-    const user = await redis.get(registerConfirmation + token);
+  async forgotPassword(@Arg("email") email: string): Promise<Boolean> {
+    const User = await _User.findOne({ where: { email: email } });
 
-    if (user == null) return false;
+    if (!User) {
+      throw new Error(GetStatusText("210"));
+    }
+    await emailSender(
+      User.email,
+      template(creatForgotPasswordUrl(User.id)),
+      subjects.forgetPassword
+    );
 
-    await _User.update({ id: user }, { confirmed: true });
-    await redis.del(registerConfirmation + token);
     return true;
   }
 }

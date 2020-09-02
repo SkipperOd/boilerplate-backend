@@ -1,5 +1,5 @@
 export const subjects = {
     emailVerification : "dummy text",
-    resetPassword : "dummy text",
+    forgetPassword : "dummy text",
     confrmPassword : "dummy text",
 };

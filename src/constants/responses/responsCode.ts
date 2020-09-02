@@ -6,7 +6,6 @@ const responseCodes: { [index: string]: string } = {
     103: 'Listing successful',
     104: 'No records found',
     105: 'Action failed',
-    106: 'Requested resource does not exists',
     107: 'You are exceeding the limit for this action',
 
     // Auth - Series 2XX
@@ -20,6 +19,7 @@ const responseCodes: { [index: string]: string } = {
     207: 'No login found',
     208: 'Not authenticated',
     209: 'Not authorized',
+    210: 'Email not found',
 
 
 

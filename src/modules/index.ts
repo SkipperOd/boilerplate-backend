@@ -15,6 +15,7 @@ import { IsAuthenticated } from "./middleware/Auth/authentication";
 import { ConfirmUserMutationResolver } from "./users/mutations/confirmUser";
 import { ForgotPasswordMutationResolver } from "./users/mutations/forgotPassword";
 import { ChangePasswordMutationResolver } from "./users/mutations/changePassword";
+import { LogoutMutationResolver } from "./users/mutations/logout";
 
 export const MetaData = buildSchema({
          resolvers: [
@@ -28,7 +29,7 @@ export const MetaData = buildSchema({
            ConfirmUserMutationResolver,
            ForgotPasswordMutationResolver,
            ChangePasswordMutationResolver,
-
+           LogoutMutationResolver,
            // Query resolvers
            UserQueryResolver,
            PermissionQueryResolver,

@@ -25,8 +25,9 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req }: any) => ({
+    context: ({ req, res }: any) => ({
       req,
+      res,
     }),
   });
 
@@ -61,7 +62,9 @@ const main = async () => {
   apolloServer.applyMiddleware({ app });
 
   app.listen(Config.backendPort, () => {
-    console.log(`Server started on http://localhost:${Config.backendPort}/graphql`);
+    console.log(
+      `Server started on http://localhost:${Config.backendPort}/graphql`
+    );
   });
 };
 

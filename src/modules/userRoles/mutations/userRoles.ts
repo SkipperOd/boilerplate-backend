@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import { _User } from "../../../database/entities/_users";
 import { _User_Roles } from "../../../database/entities/_users_roles";
-import { UserRolesInput } from "../models/user_roles";
+import { UserRolesInput } from "../models/userRoles";
 import { _Roles } from "../../../database/entities/_roles";
 import { getManager } from "typeorm";
 

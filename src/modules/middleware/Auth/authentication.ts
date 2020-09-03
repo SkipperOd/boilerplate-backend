@@ -1,4 +1,4 @@
-import { ApplicationContext } from "../../../utilities/types/application_context";
+import { ApplicationContext } from "../../../utilities/types/applicationContext";
 import { MiddlewareFn } from "type-graphql";
 import { GetStatusText } from "../../../constants/responses/responsCode";
 export const IsAuthenticated: MiddlewareFn<ApplicationContext> = async (

@@ -1,7 +1,7 @@
 import { InputType, Field } from "type-graphql";
 import { Length, IsEmail } from "class-validator";
-import { IsEmailAlreadyExist } from "../../../utilities/validations/email_Exists";
-import { IsUserNameAlreadyExist } from "../../../utilities/validations/userName_Exists";
+import { IsEmailAlreadyExist } from "../../../utilities/validations/emailExists";
+import { IsUserNameAlreadyExist } from "../../../utilities/validations/userNameExists";
 import { GetStatusText } from "../../../constants/responses/responsCode"
 import { ProfileInput } from "./profile";
 

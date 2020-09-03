@@ -1,7 +1,7 @@
 import { Resolver, Query, Arg, Ctx } from "type-graphql";
 import { _User } from "../../../database/entities/_users";
 import { getRepository } from "typeorm";
-import { ApplicationContext } from "src/utilities/types/application_context";
+import { ApplicationContext } from "src/utilities/types/applicationContext";
 
 
 

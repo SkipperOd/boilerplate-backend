@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { redis } from "../../redis";
 import { changePassword, registerConfirmation } from "../../constants/prefixes";
-import { Config } from "../../../src/constants/config/config";
+import { Config } from "../../constants/config/config";
 
 export const creatConfirmationalUrl = (userId: string) => {
   //creating redis key value

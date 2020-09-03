@@ -2,12 +2,12 @@ import { Resolver, Mutation, Arg } from "type-graphql";
 import bcript from "bcryptjs";
 import { _User } from "../../../database/entities/_users";
 import { RegistrationInput } from "../models/registration";
-import { _Profile } from "../../../../src/database/entities/_profiles";
+import { _Profile } from "../../../database/entities/_profiles";
 import { getManager } from "typeorm";
-import { creatConfirmationalUrl } from "../../../utilities/email/create_confirmation_url";
-import { emailSender } from "../../../../src/utilities/email/sender";
+import { creatConfirmationalUrl } from "../../../utilities/email/createConfirmationUrl";
+import { emailSender } from "../../../utilities/email/sender";
 import { template } from "../../../constants/email/userVerificationTemplate";
-import { subjects } from "../../../../src/constants/email/subject";
+import { subjects } from "../../../constants/email/subject";
 // import { IsAuthenticated } from "../middleware/isAuth";
 
 // import { emailSender } from "../../utility/EmailSender";

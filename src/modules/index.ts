@@ -1,16 +1,16 @@
 import { buildSchema } from "type-graphql";
 
 //queries
-import { UserQueryResolver } from "./users/queries/user_query";
-import { PermissionQueryResolver } from "./permissions/queries/permission_query";
-import { RoleQueryResolver } from "./roles/queries/roles_query";
+import { UserQueryResolver } from "./users/queries/user";
+import { PermissionQueryResolver } from "./permissions/queries/permission";
+import { RoleQueryResolver } from "./roles/queries/roles";
 //mutation
-import { RegisterMutationResolver } from "./users/mutations/register_mutation";
-import { LoginMutationResolver } from "./users/mutations/login_mutation";
-import { PermissionMutationResolver } from "./permissions/mutations/permission_mutation";
-import { RoleMutationResolver } from "./roles/mutations/roles_mutation";
-import { UserRolesMutationResolver } from "./user_roles/mutations/user_roles_mutation";
-import { UserRolesPermissionsInputMutationResolver } from "./user_roles_permissions/mutations/User_Roles_Permissions_mutation";
+import { RegisterMutationResolver } from "./users/mutations/register";
+import { LoginMutationResolver } from "./users/mutations/login";
+import { PermissionMutationResolver } from "./permissions/mutations/permission";
+import { RoleMutationResolver } from "./roles/mutations/roles";
+import { UserRolesMutationResolver } from "./userRoles/mutations/userRoles";
+import { UserRolesPermissionsInputMutationResolver } from "./userRolesPermissions/mutations/userRolesPermissions";
 import { IsAuthenticated } from "./middleware/Auth/authentication";
 import { ConfirmUserMutationResolver } from "./users/mutations/confirmUser";
 import { ForgotPasswordMutationResolver } from "./users/mutations/forgotPassword";

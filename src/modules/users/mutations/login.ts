@@ -3,7 +3,7 @@ import bcript from "bcryptjs";
 import { _User } from "../../../database/entities/_users";
 import { LoginInput } from "../models/login";
 import { _Profile } from "../../../database/entities/_profiles";
-import { ApplicationContext } from "../../../utilities/types/application_context";
+import { ApplicationContext } from "../../../utilities/types/applicationContext";
 import { GetStatusText } from "../../../constants/responses/responsCode";
 // import { IsAuthenticated } from "../middleware/isAuth";
 

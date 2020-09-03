@@ -1,11 +1,11 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import { _User } from "../../../database/entities/_users";
 import { _User_Roles } from "../../../database/entities/_users_roles";
-import { UserRolesPermissionsInput } from "../models/User_Roles_Permissions";
+import { UserRolesPermissionsInput } from "../models/userRolesPermissions";
 import { _Roles } from "../../../database/entities/_roles";
 import { getManager } from "typeorm";
-import { _User_Roles_Permissions } from "../../../../src/database/entities/_users_roles_permissions";
-import { _Permissions } from "../../../../src/database/entities/_permissions";
+import { _User_Roles_Permissions } from "../../../database/entities/_users_roles_permissions";
+import { _Permissions } from "../../../database/entities/_permissions";
 
 @Resolver()
 export class UserRolesPermissionsInputMutationResolver {

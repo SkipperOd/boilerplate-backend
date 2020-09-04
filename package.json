@@ -39,6 +39,6 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "start": "ts-node-dev --respawn src/index.ts"
+    "start": "ts-node-dev --respawn  src/index.ts"
   }
 }

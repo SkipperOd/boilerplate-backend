@@ -7,29 +7,26 @@ import {
   Delete,
   SoftDelete,
   Restore,
-} from "../../../../src/utilities/commonResolvers/mutation";
+} from "../../../utilities/commonResolvers/mutation";
 // import { Resolver, Mutation, Arg } from "type-graphql";
-import {
-  Search,
-  Get,
-} from "../../../../src/utilities/commonResolvers/query";
-import { Pagination } from "../../../../src/modules/common/input/pagination";
-import { getRelations } from "../../../../src/constants/entity/relations";
-import { Property } from "../../../../src/modules/common/input/property";
+import { Search, Get } from "../../../utilities/commonResolvers/query";
+import { Pagination } from "../../common/input/pagination";
+import { getMeta } from "../../../constants/entity/metaData";
+import { Property } from "../../common/input/property";
 
 export const SearchPermission = Search(
   "Permissions",
   _Permissions,
   Pagination,
   _Permissions,
-  getRelations("permission")
+  getMeta("permission")
 );
 export const GetPermission = Get(
   "Permission",
   _Permissions,
   Property,
   _Permissions,
-  getRelations("permission")
+  getMeta("permission")
 );
 
 export const CreatePermission = Create(

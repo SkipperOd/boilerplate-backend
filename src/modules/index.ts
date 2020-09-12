@@ -1,12 +1,9 @@
 import { buildSchema } from "type-graphql";
 
 //queries
-import { UserQueryResolver, getAllUsers, getUser } from "./users/queries/user";
-import { PermissionQueryResolver } from "./permissions/queries/permission";
-import { RoleQueryResolver } from "./roles/queries/roles";
 //mutation
-import { RegisterMutationResolver } from "./users/mutations/register";
-import { LoginMutationResolver } from "./users/mutations/login";
+import { RegisterMutationResolver } from "./users/resolvers/register";
+import { LoginMutationResolver } from "./users/resolvers/login";
 import {
   CreatePermission,
   UpdatePermission,
@@ -15,29 +12,92 @@ import {
   SearchPermission,
   GetPermission,
   RestoreDeletedPermission,
-} from "./permissions/mutations/permission";
-import { RoleMutationResolver } from "./roles/mutations/roles";
-import { UserRolesMutationResolver } from "./userRoles/mutations/userRoles";
-import { UserRolesPermissionsInputMutationResolver } from "./userRolesPermissions/mutations/userRolesPermissions";
+} from "./permissions/resolvers/permission";
 import { IsAuthenticated } from "./middleware/Auth/authentication";
-import { ConfirmUserMutationResolver } from "./users/mutations/confirmUser";
-import { ForgotPasswordMutationResolver } from "./users/mutations/forgotPassword";
-import { ChangePasswordMutationResolver } from "./users/mutations/changePassword";
-import { LogoutMutationResolver } from "./users/mutations/logout";
+import { ConfirmUserMutationResolver } from "./users/resolvers/confirmUser";
+import { ForgotPasswordMutationResolver } from "./users/resolvers/forgotPassword";
+import { ChangePasswordMutationResolver } from "./users/resolvers/changePassword";
+import { LogoutMutationResolver } from "./users/resolvers/logout";
+import {
+  SearchRole,
+  GetRole,
+  CreateRole,
+  UpdateRole,
+  DeleteRole,
+  SoftDeleteRole,
+  RestoreDeletedRole,
+} from "./roles/resolvers/roles";
+import {
+  SearchUserRoles,
+  GetUserRoles,
+  CreateUserRoles,
+  DeleteUserRoles,
+  UpdateUserRoles,
+  RestoreDeletedUserRoles,
+  SoftDeleteUserRoles,
+} from "./userRoles/resolvers/userRoles";
+import {
+  SearchUserRolePermission,
+  GetUserRolePermission,
+  UpdateUserRolePermission,
+  CreateUserRolePermission,
+  DeleteUserRolePermission,
+  SoftDeleteUserRolePermission,
+  RestoreDeletedUserRolePermission,
+} from "./userRolesPermissions/resolvers/userRolesPermissions";
+import {
+  SearchUser,
+  GetUser,
+  CreateUser,
+  UpdateUser,
+  DeleteUser,
+  SoftDeleteUser,
+  RestoreDeletedUser,
+} from "./users/resolvers/users";
 
 export const MetaData = buildSchema({
   resolvers: [
-    // Mutation resolvers
-    UserRolesPermissionsInputMutationResolver,
+    // User resolvers
     RegisterMutationResolver,
-    // PermissionMutationResolver,
-    RoleMutationResolver,
     LoginMutationResolver,
-    UserRolesMutationResolver,
     ConfirmUserMutationResolver,
     ForgotPasswordMutationResolver,
     ChangePasswordMutationResolver,
     LogoutMutationResolver,
+    SearchUser,
+    GetUser,
+    CreateUser,
+    UpdateUser,
+    DeleteUser,
+    SoftDeleteUser,
+    RestoreDeletedUser,
+    // Role Opertaions
+    SearchRole,
+    GetRole,
+    CreateRole,
+    UpdateRole,
+    DeleteRole,
+    SoftDeleteRole,
+    RestoreDeletedRole,
+
+    //User Roles Permission Operations
+    SearchUserRolePermission,
+    GetUserRolePermission,
+    UpdateUserRolePermission,
+    CreateUserRolePermission,
+    DeleteUserRolePermission,
+    SoftDeleteUserRolePermission,
+    RestoreDeletedUserRolePermission,
+
+    // User Roles Operations
+    SearchUserRoles,
+    GetUserRoles,
+    CreateUserRoles,
+    DeleteUserRoles,
+    UpdateUserRoles,
+    RestoreDeletedUserRoles,
+    SoftDeleteUserRoles,
+
     // Permission Operations
     CreatePermission,
     UpdatePermission,
@@ -46,13 +106,6 @@ export const MetaData = buildSchema({
     SearchPermission,
     GetPermission,
     RestoreDeletedPermission,
-
-    // Query resolvers
-    UserQueryResolver,
-    PermissionQueryResolver,
-    RoleQueryResolver,
-    getAllUsers,
-    getUser,
   ],
   globalMiddlewares: [IsAuthenticated],
 });

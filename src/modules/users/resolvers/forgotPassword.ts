@@ -1,11 +1,11 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import { _User } from "../../../database/entities/_users";
 
-import { GetStatusText } from "../../../../src/constants/responses/responsCode";
-import { emailSender } from "../../../../src/utilities/email/sender";
-import { template } from "../../../../src/constants/email/forgotPasswordTemplate";
+import { GetStatusText } from "../../../constants/responses/responsCode";
+import { emailSender } from "../../../utilities/email/sender";
+import { template } from "../../../constants/email/forgotPasswordTemplate";
 import { creatForgotPasswordUrl } from "../../../utilities/email/createConfirmationUrl";
-import { subjects } from "../../../../src/constants/email/subject";
+import { subjects } from "../../../constants/email/subject";
 
 @Resolver()
 export class ForgotPasswordMutationResolver {

@@ -8,10 +8,7 @@ import { creatConfirmationalUrl } from "../../../utilities/email/createConfirmat
 import { emailSender } from "../../../utilities/email/sender";
 import { template } from "../../../constants/email/userVerificationTemplate";
 import { subjects } from "../../../constants/email/subject";
-// import { IsAuthenticated } from "../middleware/isAuth";
 
-// import { emailSender } from "../../utility/EmailSender";
-// import { creatConfirmationalUrl } from "../../utility/creatConfirmationalUrl";
 
 @Resolver()
 export class RegisterMutationResolver {

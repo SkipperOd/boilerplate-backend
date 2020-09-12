@@ -2,7 +2,7 @@ import { Field, InputType } from "type-graphql";
 
 @InputType()
 class OrderByInputType {
-  @Field({ defaultValue: "created_at", nullable: true })
+  @Field({ defaultValue: "createdAt", nullable: true })
   fieldName: string;
 
   @Field({ defaultValue: "DESC", nullable: true,description:"can only work with DESC or ASC" })
@@ -24,4 +24,7 @@ export class Pagination {
   pagination: PaginationInputType;
   @Field({ nullable: true })
   search: string;
+
+  @Field({defaultValue:"nd",description:"nd = not deleted and d = deleted"})
+  which:string
 }

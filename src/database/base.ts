@@ -17,8 +17,8 @@ export class Base extends BaseEntity {
   })
   id: string;
 
-  @Column("bool", { default: false })
-  isDeleted: boolean;
+  // @Column("bool", { default: false })
+  // isDeleted: boolean;
 
   @Column("bool", { default: true })
   status: boolean;

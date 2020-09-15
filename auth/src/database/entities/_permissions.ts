@@ -12,6 +12,13 @@ export class _Permissions extends Base {
   @Column()
   name: string;
 
+  @Column("bool", { default: false })
+  @Field()
+  read: boolean;
+
+  @Column("bool", { default: false })
+  @Field()
+  write: boolean;
   @OneToMany(
     () => _User_Roles_Permissions,
     (userRolesPermissions) => userRolesPermissions.permissions

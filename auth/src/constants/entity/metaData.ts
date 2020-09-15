@@ -17,11 +17,11 @@ async function Meta() {
           alias: "roles",
         },
         {
-          relationName: "userRoles.userRolesPermissions",
-          alias: "userRolesPermissions",
+          relationName: "roles.rolesPermissions",
+          alias: "rolesPermissions",
         },
         {
-          relationName: "userRolesPermissions.permissions",
+          relationName: "rolesPermissions.permissions",
           alias: "permissions",
         },
       ],
@@ -49,8 +49,12 @@ async function Meta() {
           alias: "userRoles",
         },
         {
-          relationName: "userRoles.users",
-          alias: "users",
+          relationName: "role.rolesPermissions",
+          alias: "rolesPermissions",
+        },
+        {
+          relationName: "rolesPermissions.permissions",
+          alias: "permissions",
         },
       ],
     },

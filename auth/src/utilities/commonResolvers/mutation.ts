@@ -147,3 +147,37 @@ export function Restore<X extends ClassType>(
   }
   return BaseRestoreDeletedResolver;
 }
+
+
+
+// export function CreateRelation<X extends ClassType, T extends ClassType,Y extends ClassType>(
+//   name: string,
+//   returnType: T, // what will be the type of this function
+//   inputType: X,
+//   relations: [Y],
+//   entity: any
+// ) {
+//   @Resolver()
+//   class BaseCreateResolver {
+//     @Mutation(() => [returnType], { name: `create${name}` })
+//     async create(@Arg("data", () => [inputType]) data: any) {
+//       const mainEntity = getRepository(entity)
+//       relations.forEach(relation => {
+        
+//       });
+
+//       // const inserted = await getConnection()
+//       //   .createQueryBuilder()
+//       //   .insert()
+//       //   .into(entity)
+//       //   .values(data)
+//       //   .execute();
+//       // const repository = getRepository(entity);
+//       // let qb = repository.createQueryBuilder();
+//       // qb.where(inserted.identifiers);
+//       // const result = await qb.getMany();
+//       return result;
+//     }
+//   }
+//   return BaseCreateResolver;
+// }

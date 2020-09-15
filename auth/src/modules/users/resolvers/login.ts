@@ -21,8 +21,9 @@ export class LoginMutationResolver {
       relations: [
         "profile",
         "userRoles",
-        "userRoles.userRolesPermissions",
-        "userRoles.userRolesPermissions.permissions",
+        "userRoles.roles",
+        "userRoles.roles.rolesPermissions",
+        "userRoles.roles.rolesPermissions.permissions",
       ],
     });
 

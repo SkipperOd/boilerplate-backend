@@ -1,12 +1,16 @@
 import { InputType, Field } from "type-graphql";
-import { Length } from "class-validator";
 import { BaseInput } from "../../../../src/modules/common/input/property";
 
 @InputType({ description: "permission" })
 export class PermissionsInput extends BaseInput {
   @Field({ nullable: true })
-  @Length(2, 20)
   name: string;
+
+  @Field({ nullable: true })
+  write: boolean;
+
+  @Field({ nullable: true })
+  read: boolean;
 }
 
 // @InputType({ description: "permission" })

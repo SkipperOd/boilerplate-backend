@@ -1,21 +1,21 @@
 import "reflect-metadata";
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer, SchemaDirectiveVisitor } from "apollo-server-express";
 import Express from "express";
 import { createConnection } from "typeorm";
 
 import { MetaData } from "../src/modules/index";
-
-import connectRedis from "connect-redis";
-import session from "express-session";
-import { redis } from "./redis";
+import cookieParser from "cookie-parser";
+// import connectRedis from "connect-r edis";
+// import session from "express-session";
+// import { redis } from "./redis";
 import cors from "cors";
 
 import { Config } from "./constants/config/config";
-
+import { autherization } from "./utilities/directives/autherization";
+// import { verify } from "jsonwebtoken";
+var process = require("process");
 const main = async () => {
   await createConnection();
-
-  console.log(Config);
   const schema = await MetaData;
 
   //to access request object in our resolver to access session data
@@ -23,8 +23,13 @@ const main = async () => {
   //and from there we can access session data based on the client request.
   //context is made avalible from any resolver
 
+  SchemaDirectiveVisitor.visitSchemaDirectives(schema, {
+    auth: autherization,
+  });
+
   const apolloServer = new ApolloServer({
     schema,
+    
     context: ({ req, res }: any) => ({
       req,
       res,
@@ -41,29 +46,18 @@ const main = async () => {
   );
 
   // setting up redis to store cookie with our use sessions
-  const RedisStore = connectRedis(session);
-  app.use(
-    session({
-      store: new RedisStore({
-        client: redis,
-      }),
-      name: "qid",
-      secret: Config.sessionSecret,
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        httpOnly: true,
-        secure: Config.envrionment === "Production",
-        maxAge: 1000 * 60 * 60 * 24 * 7 * 365,
-      },
-    })
-  );
+  // const RedisStore = connectRedis(session);
 
-  apolloServer.applyMiddleware({ app });
+  app.use(cookieParser());
+
+  apolloServer.applyMiddleware({
+    app,
+  });
 
   app.listen(Config.backendPort, () => {
     console.log(
-      `Server started on http://localhost:${Config.backendPort}/graphql`
+      `Server started on http://localhost:${Config.backendPort}/graphql`,
+      `${process.pid}`
     );
   });
 };

@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true, // to enable reflect meta data in typescript
     "experimentalDecorators": true,
     "skipLibCheck": true,
   

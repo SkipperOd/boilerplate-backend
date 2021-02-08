@@ -10,6 +10,9 @@ export class _Profile extends Base {
   @Column()
   imageUrl: string;
   
+  @Field()
+  @Column({ nullable: true })
+  phoneNumber: string;
 
   @OneToOne(() => _User, (user) => user.profile)
   user: _User;

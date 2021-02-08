@@ -9,4 +9,6 @@ export const Config = {
   nodemailerFromEmail: process.env.NODE_MAILER_FROM as string,
   changePasswordLink: process.env.CHANGE_PASSWORD_LINK as string,
   confirmUserLink: process.env.CONFIRM_USER_LINK as string,
+  refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET as string,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET as string,
 };

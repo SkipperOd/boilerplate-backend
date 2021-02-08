@@ -1,4 +1,4 @@
-import { buildSchema } from "type-graphql";
+import { buildSchemaSync } from "type-graphql";
 
 //queries
 //mutation
@@ -13,7 +13,7 @@ import {
   GetPermission,
   RestoreDeletedPermission,
 } from "./permissions/resolvers/permission";
-import { IsAuthenticated } from "./middleware/Auth/authentication";
+import { GetEntityTypes } from "./middleware/Auth/entityTypes";
 import { ConfirmUserMutationResolver } from "./users/resolvers/confirmUser";
 import { ForgotPasswordMutationResolver } from "./users/resolvers/forgotPassword";
 import { ChangePasswordMutationResolver } from "./users/resolvers/changePassword";
@@ -56,8 +56,12 @@ import {
   SoftDeleteUser,
   RestoreDeletedUser,
 } from "./users/resolvers/users";
+import { Initiation } from "./middleware/Auth/initiation";
+// import { IsAuthorized } from "./middleware/Auth/authorization";
 
-export const MetaData = buildSchema({
+
+
+export const MetaData = buildSchemaSync({
   resolvers: [
     // User resolvers
     RegisterMutationResolver,
@@ -110,5 +114,6 @@ export const MetaData = buildSchema({
     GetPermission,
     RestoreDeletedPermission,
   ],
-  globalMiddlewares: [IsAuthenticated],
+  globalMiddlewares: [Initiation, GetEntityTypes],
+  directives: [],
 });

@@ -1,5 +1,15 @@
-import { ClassType, Resolver, Mutation, Arg } from "type-graphql";
+import { IsAuthorized } from "../../../src/modules/middleware/Auth/authorization";
+import {
+  ClassType,
+  Resolver,
+  Mutation,
+  Arg,
+  UseMiddleware,
+  Ctx,
+} from "type-graphql";
 import { getConnection, getRepository } from "typeorm";
+import { IsAuthenticated } from "../../../src/modules/middleware/Auth/authentication";
+import { ApplicationContext } from "../types/applicationContext";
 // import { getRepository } from "typeorm";
 // import { MetaData } from "../../../src/constants/entity/relationsConfig";
 
@@ -15,7 +25,12 @@ export function Create<X extends ClassType, T extends ClassType>(
   @Resolver()
   class BaseCreateResolver {
     @Mutation(() => [returnType], { name: `create${name}` })
-    async create(@Arg("data", () => [inputType]) data: any) {
+    @UseMiddleware(IsAuthenticated,IsAuthorized)
+    async create(
+      @Arg("data", () => [inputType]) data: any,
+      @Ctx() ctx: ApplicationContext
+    ) {
+      console.log(ctx);
       const inserted = await getConnection()
         .createQueryBuilder()
         .insert()
@@ -41,8 +56,12 @@ export function Update<T extends ClassType, X extends ClassType>(
   @Resolver()
   class BaseUpdateResolver {
     @Mutation(() => returnType, { name: `update${name}` })
-    async update(@Arg("data", () => inputType) data: any) {
-      console.log(data);
+    @UseMiddleware(IsAuthenticated)
+    async update(
+      @Arg("data", () => inputType) data: any,
+      @Ctx() ctx: ApplicationContext
+    ) {
+      console.log(ctx);
       const updated = await getConnection()
         .createQueryBuilder()
         .update(entity)
@@ -68,7 +87,12 @@ export function Delete<X extends ClassType>(
   @Resolver()
   class BaseDeleteResolver {
     @Mutation(() => String, { name: `delete${name}` })
-    async update(@Arg("data", () => inputType) data: any) {
+    @UseMiddleware(IsAuthenticated)
+    async update(
+      @Arg("data", () => inputType) data: any,
+      @Ctx() ctx: ApplicationContext
+    ) {
+      console.log(ctx);
       const deleted = await getConnection()
         .createQueryBuilder()
         .delete()
@@ -101,7 +125,12 @@ export function SoftDelete<X extends ClassType>(
   @Resolver()
   class BaseSoftDeleteResolver {
     @Mutation(() => String, { name: `softDelete${name}` })
-    async update(@Arg("data", () => inputType) data: any) {
+    @UseMiddleware(IsAuthenticated)
+    async update(
+      @Arg("data", () => inputType) data: any,
+      @Ctx() ctx: ApplicationContext
+    ) {
+      console.log(ctx);
       const deleted = await getConnection()
         .createQueryBuilder()
         .softDelete()
@@ -134,21 +163,24 @@ export function Restore<X extends ClassType>(
   @Resolver()
   class BaseRestoreDeletedResolver {
     @Mutation(() => String, { name: `restoreDeleted${name}` })
-    async restore(@Arg("data", () => inputType) data: any) {
+    @UseMiddleware(IsAuthenticated)
+    async restore(
+      @Arg("data", () => inputType) data: any,
+      @Ctx() ctx: ApplicationContext
+    ) {
+      console.log(ctx);
       const restored = await getConnection()
         .createQueryBuilder()
         .restore()
         .from(entity)
         .where({ id: data.id })
         .execute();
-      console.log(restored)
+      console.log(restored);
       return "done";
     }
   }
   return BaseRestoreDeletedResolver;
 }
-
-
 
 // export function CreateRelation<X extends ClassType, T extends ClassType,Y extends ClassType>(
 //   name: string,
@@ -163,7 +195,7 @@ export function Restore<X extends ClassType>(
 //     async create(@Arg("data", () => [inputType]) data: any) {
 //       const mainEntity = getRepository(entity)
 //       relations.forEach(relation => {
-        
+
 //       });
 
 //       // const inserted = await getConnection()

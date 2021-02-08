@@ -4,10 +4,10 @@ import { _User } from "../../../database/entities/_users";
 import { RegistrationInput } from "../models/registration";
 import { _Profile } from "../../../database/entities/_profiles";
 import { getManager } from "typeorm";
-import { creatConfirmationalUrl } from "../../../utilities/email/createConfirmationUrl";
-import { emailSender } from "../../../utilities/email/sender";
-import { template } from "../../../constants/email/userVerificationTemplate";
-import { subjects } from "../../../constants/email/subject";
+// import { creatConfirmationalUrl } from "../../../utilities/email/createConfirmationUrl";
+// import { emailSender } from "../../../utilities/email/sender";
+// import { template } from "../../../constants/email/userVerificationTemplate";
+// import { subjects } from "../../../constants/email/subject";
 
 
 @Resolver()
@@ -30,11 +30,11 @@ export class RegisterMutationResolver {
     user.password = hashedpassword;
     user.profile = netprofile;
     const User = await getManager().connection.createEntityManager().save(user);
-    await emailSender(
-      User.email,
-      template(creatConfirmationalUrl(User.id)),
-      subjects.emailVerification
-    );
+    // await emailSender(
+    //   User.email,
+    //   template(creatConfirmationalUrl(User.id)),
+    //   subjects.emailVerification
+    // );
 
     return User;
   }

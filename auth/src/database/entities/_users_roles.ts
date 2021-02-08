@@ -6,6 +6,8 @@ import { _Roles } from "./_roles";
 import { ObjectType, Field } from "type-graphql";
 @ObjectType()
 @Entity()
+
+
 export class _User_Roles extends Base {
   @ManyToOne(() => _User, (users) => users.userRoles,{ onDelete:"CASCADE"})
   @Field(() => _User)

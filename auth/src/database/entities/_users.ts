@@ -2,15 +2,20 @@ import { Entity, Column, OneToMany, JoinColumn, OneToOne } from "typeorm";
 import { Base } from "../base";
 import { _User_Roles } from "./_users_roles";
 import { _Profile } from "./_profiles";
-import { ObjectType, Field, Root } from "type-graphql";
+import { ObjectType, Field, Root, Directive } from "type-graphql";
 @ObjectType()
 @Entity()
+@Directive("@auth")
 export class _User extends Base {
   @Column({ nullable: true })
   authToken: string;
 
   @Column({ nullable: true })
   resetToken: string;
+
+  @Column({ nullable: true })
+  refreshToken: string;
+
   @Field({ nullable: true })
   @Column()
   firstName: string;
@@ -29,6 +34,7 @@ export class _User extends Base {
 
   @Column()
   status: boolean;
+
   @Field()
   @Column()
   gender: string;

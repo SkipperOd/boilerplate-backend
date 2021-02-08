@@ -1,12 +1,16 @@
 {
-    "name": "default",
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "securedb!",
-    "database": "postgres",
-    "synchronize": true,
-    "logging": false,
-    "entities": ["src/database/entities/*.*"]
+  "name": "default",
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "securedb!",
+  "database": "postgres",
+  "synchronize": false,
+  "logging": false,
+  "entities": ["src/database/entities/*.*"],
+  "migrations": ["src/migration/**/*.ts"],
+  "cli": {
+    "migrationsDir": "src/migration"
   }
+}
